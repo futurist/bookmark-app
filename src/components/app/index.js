@@ -1,32 +1,16 @@
 import React from 'react'
 import Loadable from 'react-loadable'
 import loading from '../loading'
-import ReactCSS from 'react-cssobj'
-import flexbox from 'cssobj-plugin-flexbox'
-import defaultUnit from 'cssobj-plugin-default-unit'
+import {cssLayout} from '../../css'
 
-const gridLayout = {
-  '.app':{
-    display: 'grid',
-    gridTemplateColumns: '80px 1fr',
-    gridTemplateRows: '80px 1fr',
-    gridTemplateAreas: `
-"nav header header"
-"nav main main"
-`
-  },
-  'header':{ gridArea: 'header' },
-  'nav':{ gridArea: 'nav' },
-  'main':{ gridArea: 'main', minHeight: 200 },
-}
+import { Input } from 'antd'
+import { Menu, Icon } from 'antd';
+import { Card } from 'antd';
 
-const {css, mapClass} = ReactCSS({
-  '@supports(display:grid)': gridLayout
-}, {
-  local: true,
-  plugins: [flexbox(), defaultUnit()]
-})
+const Search = Input.Search
+const SubMenu = Menu.SubMenu;
 
+const {css, mapClass} = cssLayout
 const LoadableComponent = Loadable({
   loader: () => import('../user'),
   loading,
@@ -34,9 +18,21 @@ const LoadableComponent = Loadable({
   timeout: 15e3,
   render (el, props){
     const Component = el.default
-    return <main className="main"><div/></main>
+    return <main><Component/></main>
   }
 })
+
+function handleClick(e) {
+  console.log('click', e)
+}
+
+class Category extends React.Component{
+  render(){
+    return <div>
+      
+    </div>
+  }
+}
 
 class App extends React.Component {
   constructor(props, context){
@@ -52,17 +48,39 @@ class App extends React.Component {
     //   el => el.type=='span' ? {children:<h1/>} : replacer(el.props.className)
     // ); return d;
     return mapClass(
-      <div className='app'>
-        <nav>
-          It's NAV
-        </nav>
+      <div className='container'>
         <header>
-          <h2 className={{appTitle:1, abc:this.state.ok}} onClick={e=>{
-            css.set('.appTitle', {color: 'white'})
-            this.setState({ok: !this.state.ok})
-          }}><span>Bookmark List</span></h2>
+          <h3>All Bookmarks</h3>
+          <Search placeholder="Enter keyword" enterButton onPressEnter={
+            el=>console.log(el)
+          } style={{maxWidth:'15rem'}} />
         </header>
+        <nav>
+          <Menu
+            defaultSelectedKeys={['1']}
+            mode="vertical"
+            onClick={handleClick}
+          >
+            <Menu.Item key="1">
+              <Icon type="pie-chart" />
+              <span>全部</span>
+            </Menu.Item>
+            <Menu.Item key="2">
+              <Icon type="desktop" />
+              <span>收藏</span>
+            </Menu.Item>
+          </Menu>
+          
+          
+          <Card title="分类" bordered={false} extra={<a href="#">添加</a>}>
+            <p>分类一</p>
+            <p>分类一</p>
+            <p>分类一</p>
+          </Card>
+          
+        </nav>
         <LoadableComponent />
+        {/* <footer>copyright</footer> */}
       </div>
     )
   }
