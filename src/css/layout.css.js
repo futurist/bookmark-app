@@ -1,5 +1,33 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+
+const antDesign = {
+  '.!ant-input-search':{
+    'button,input':{
+      borderRadius: 0,
+      border:'none',
+      background: 'none',
+      color: 'aliceblue',
+    },
+    'input':{
+      borderBottom: '1px solid #666666'
+    }
+  },
+  '.!ant-input-affix-wrapper':{
+    '&:hover, &:active':{
+      '.!ant-input:not(.!ant-input-disabled)':{
+        borderColor: '#999999'
+      }
+    }
+  },
+  '.!ant-card-head':{
+    minHeight: 'auto'
+  },
+  '.!ant-card-head-title, .!ant-card-extra':{
+    padding: 5
+  }
+}
+
+exports.default = Object.assign({
   body: {
     fontFamily: "Roboto, sans-serif",
     fontSize: '62.5%'
@@ -46,7 +74,15 @@ exports.default = {
     },
     '.!ant-card':{
       borderTop: '1px solid #ccc'
-    }
+    },
+    '.!ant-menu:not(.!ant-menu-horizontal)':{
+      '.!ant-menu-item-selected':{
+        backgroundColor: 'rgba(0,0,0,.12)'
+      },
+      '.!ant-menu-item':{
+        color: 'rgba(0,0,0,.87)'
+      }
+    },
   },
   aside: {
     padding: '20px',
@@ -59,5 +95,7 @@ exports.default = {
     fontSize: '1.2rem',
     backgroundColor: '#690',
     color: 'white'
-  }
-}
+  },
+}, antDesign)
+
+

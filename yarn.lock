@@ -76,7 +76,7 @@ ajv-keywords@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
 
-ajv-keywords@^3.0.0:
+ajv-keywords@^3.0.0, ajv-keywords@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.1.0.tgz#ac2b27939c543e95d2c06e7f7f5c27be4aa543be"
 
@@ -99,6 +99,14 @@ ajv@^5.0.0, ajv@^5.1.5, ajv@^5.2.0:
 ajv@^6.0.1:
   version "6.2.1"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.2.1.tgz#28a6abc493a2abe0fb4c8507acaedb43fa550671"
+  dependencies:
+    fast-deep-equal "^1.0.0"
+    fast-json-stable-stringify "^2.0.0"
+    json-schema-traverse "^0.3.0"
+
+ajv@^6.1.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.3.0.tgz#1650a41114ef00574cac10b8032d8f4c14812da7"
   dependencies:
     fast-deep-equal "^1.0.0"
     fast-json-stable-stringify "^2.0.0"
@@ -360,6 +368,10 @@ assert@^1.1.1:
   dependencies:
     util "0.10.3"
 
+assign-map@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/assign-map/-/assign-map-1.1.0.tgz#7b7599eb2a579a29427e7d304b86db6931509795"
+
 assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
@@ -387,6 +399,10 @@ async@^2.1.2, async@^2.1.4, async@^2.4.1:
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
   dependencies:
     lodash "^4.14.0"
+
+async@~0.2.10:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/async/-/async-0.2.10.tgz#b6bbe0b0674b9d719708ca38de8c237cb526c3d1"
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -1866,6 +1882,14 @@ css-loader@0.28.7:
     postcss-value-parser "^3.3.0"
     source-list-map "^2.0.0"
 
+css-loader@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/css-loader/-/css-loader-0.9.1.tgz#2e1aa00ce7e30ef2c6a7a4b300a080a7c979e0dc"
+  dependencies:
+    csso "1.3.x"
+    loader-utils "~0.2.2"
+    source-map "~0.1.38"
+
 css-select@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/css-select/-/css-select-1.2.0.tgz#2b3a110539c5355f1cd8d314623e870b121ec858"
@@ -1928,6 +1952,10 @@ cssesc@^0.1.0:
     postcss-value-parser "^3.2.3"
     postcss-zindex "^2.0.1"
 
+csso@1.3.x:
+  version "1.3.12"
+  resolved "https://registry.yarnpkg.com/csso/-/csso-1.3.12.tgz#fc628694a2d38938aaac4996753218fd311cdb9e"
+
 csso@~2.3.1:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/csso/-/csso-2.3.2.tgz#ddd52c587033f49e94b71fc55569f252e8ff5f85"
@@ -1947,9 +1975,9 @@ cssobj@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/cssobj/-/cssobj-1.3.1.tgz#0726dde69dbde9687b04cf1348cff9240de6fde1"
 
-cssobj@^1.3.5:
-  version "1.3.5"
-  resolved "https://registry.yarnpkg.com/cssobj/-/cssobj-1.3.5.tgz#c6b1750bef15c2d5cdecc21cf39b5961085f922c"
+cssobj@^1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/cssobj/-/cssobj-1.3.6.tgz#8f8d879696b8372b6c3ebe30a93653e61ab5d747"
 
 cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   version "0.3.2"
@@ -2854,6 +2882,12 @@ file-loader@1.1.5:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
+
+file-loader@^0.8.1:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-0.8.5.tgz#9275d031fe780f27d47f5f4af02bd43713cc151b"
+  dependencies:
+    loader-utils "~0.2.5"
 
 filename-regex@^2.0.0:
   version "2.0.1"
@@ -4363,7 +4397,7 @@ loader-runner@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/loader-runner/-/loader-runner-2.3.0.tgz#f482aea82d543e07921700d5a46ef26fdac6b8a2"
 
-loader-utils@^0.2.16:
+loader-utils@^0.2.16, loader-utils@^0.2.5, loader-utils@~0.2.2, loader-utils@~0.2.3, loader-utils@~0.2.5:
   version "0.2.17"
   resolved "https://registry.yarnpkg.com/loader-utils/-/loader-utils-0.2.17.tgz#f86e6374d43205a6e6c60e9196f17c0299bfb348"
   dependencies:
@@ -6032,12 +6066,12 @@ react-change-props@^1.2.0:
   dependencies:
     react ">0.14.0"
 
-react-cssobj@1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/react-cssobj/-/react-cssobj-1.2.3.tgz#f4a178e35ecfd163f9416587767f9ec65873a28b"
+react-cssobj@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/react-cssobj/-/react-cssobj-1.2.4.tgz#8d60a25190d3d4a1663f96ed6d548ac1717e03ef"
   dependencies:
     classnames "^2.2.5"
-    cssobj "^1.3.5"
+    cssobj "^1.3.6"
     react ">0.14.0"
     react-change-props "^1.2.0"
 
@@ -6533,6 +6567,13 @@ schema-utils@^0.3.0:
   dependencies:
     ajv "^5.0.0"
 
+schema-utils@^0.4.5:
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.4.5.tgz#21836f0608aac17b78f9e3e24daff14a5ca13a3e"
+  dependencies:
+    ajv "^6.1.0"
+    ajv-keywords "^3.1.0"
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
@@ -6787,6 +6828,12 @@ source-map@^0.6.1, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
+source-map@~0.1.38:
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.1.43.tgz#c24bc146ca517c1471f5dacbe2571b2b7f9e3346"
+  dependencies:
+    amdefine ">=0.0.4"
+
 spdx-correct@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/spdx-correct/-/spdx-correct-3.0.0.tgz#05a5b4d7153a195bc92c3c425b69f3b2a9524c82"
@@ -6898,6 +6945,24 @@ string-length@^1.0.1:
   dependencies:
     strip-ansi "^3.0.0"
 
+string-replace-loader@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/string-replace-loader/-/string-replace-loader-2.1.1.tgz#b72e7b57b6ef04efe615aff0ad989b5c14ca63d1"
+  dependencies:
+    loader-utils "^1.1.0"
+    schema-utils "^0.4.5"
+
+string-replace-webpack-plugin@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/string-replace-webpack-plugin/-/string-replace-webpack-plugin-0.1.3.tgz#73c657e759d66cfe80ae1e0cf091aa256d0e715c"
+  dependencies:
+    async "~0.2.10"
+    loader-utils "~0.2.3"
+  optionalDependencies:
+    css-loader "^0.9.1"
+    file-loader "^0.8.1"
+    style-loader "^0.8.3"
+
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-1.0.2.tgz#118bdf5b8cdc51a2a7e70d211e07e2b0b9b107d3"
@@ -6975,6 +7040,12 @@ style-loader@0.19.0:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
+
+style-loader@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.8.3.tgz#f4f92eb7db63768748f15065cd6700f5a1c85357"
+  dependencies:
+    loader-utils "^0.2.5"
 
 supports-color@^2.0.0:
   version "2.0.0"

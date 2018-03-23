@@ -11,6 +11,7 @@ const cssLayout = ReactCSS(layoutCSS, {
   local: true,
   plugins: [flexbox(), defaultUnit()]
 })
+window.cssLayout = cssLayout
 
 export { cssLayout }
 
