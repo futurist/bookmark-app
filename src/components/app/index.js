@@ -1,7 +1,7 @@
 // public modules
 import React from 'react'
 import Loadable from 'react-loadable'
-import assignMap from 'assign-map'
+import mapValue from 'map-value'
 
 import { Input } from 'antd'
 import { Menu, Icon } from 'antd'
@@ -50,7 +50,7 @@ class App extends React.Component {
     this.setState({
       confirmLoading: true,
     })
-    api.post('/bookmark', assignMap(this.state, {
+    api.post('/bookmark', mapValue(this.state, {
       visible: null,
       tagInput: v=>(v && {tags: v.split(/\s*,\s*/)})
     }))

@@ -368,10 +368,6 @@ assert@^1.1.1:
   dependencies:
     util "0.10.3"
 
-assign-map@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/assign-map/-/assign-map-1.1.0.tgz#7b7599eb2a579a29427e7d304b86db6931509795"
-
 assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
@@ -4553,6 +4549,10 @@ map-cache@^0.2.2:
 map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"
+
+map-value@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/map-value/-/map-value-1.1.0.tgz#090d6a98c5701904fdde0306b60c07bca0376c59"
 
 map-visit@^1.0.0:
   version "1.0.0"
