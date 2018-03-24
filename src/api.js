@@ -1,5 +1,5 @@
 const DEFAULT_HOST = process.env.API_HOST
-  || 'http://rem-rest-api.herokuapp.com/api'
+  || 'https://jamesjson.herokuapp.com/api'
 
 class API {
   constructor ({host, headers}={}) {
@@ -8,13 +8,15 @@ class API {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     }, headers)
+    // Set content-type is not allowed, if mode=no-cors
+    // https://stackoverflow.com/questions/38156239/how-to-set-the-content-type-of-request-header-when-using-fetch-api
   }
   
-  fetch ({method='get', path, data, headers}) {
+  fetch ({method='GET', path, data, headers}) {
     return fetch(
       this.HOST + path,
       {
-        mode: 'no-cors',
+        mode: 'cors',  // no-cors will prevent setting content-type
         method: method.toUpperCase(),
         body: JSON.stringify(data),
         credentials: 'include',

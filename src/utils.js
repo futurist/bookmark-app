@@ -16,7 +16,7 @@ export function ensureHTTP(url){
 }
 
 export function fetchURLInfo(url){
-  return fetch(`https://0171rltbak.execute-api.us-east-1.amazonaws.com/dev/hello-world?url=${url}`)
+  return fetch(`https://jamesbookmark.herokuapp.com/lambda/info/run?url=${url}`)
   .then(r=>r.json())
 }
 
