@@ -6,7 +6,8 @@ import resetCSS from './minireset.css.js'
 // import resetCSS from './normalize.css.js'
 import layoutCSS from './layout.css.js'
 
-const cssReset = ReactCSS(resetCSS)
+ReactCSS(resetCSS)
+
 const cssLayout = ReactCSS(layoutCSS, {
   local: true,
   plugins: [flexbox(), defaultUnit()]

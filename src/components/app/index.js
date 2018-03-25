@@ -2,10 +2,6 @@
 import React from 'react'
 import Loadable from 'react-loadable'
 
-import { Input } from 'antd'
-import { Menu, Icon } from 'antd'
-import { Card, Tag } from 'antd'
-import { Modal, Button } from 'antd'
 
 // local modules
 import loading from '../loading'
@@ -13,11 +9,8 @@ import {cssLayout} from '../../css'
 import Header from './header'
 import Nav from './nav'
 
-const Search = Input.Search
-const {TextArea} = Input
-const SubMenu = Menu.SubMenu
 
-const {css, mapClass} = cssLayout
+const {mapClass} = cssLayout
 const LoadableComponent = Loadable({
   loader: () => import('../user'),
   loading,

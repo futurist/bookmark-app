@@ -1,14 +1,11 @@
+import { Input,  Menu, Icon, Card, Tag, Modal, Button } from 'antd'
 import { arrayUnique, ensureHTTP, fetchURLInfo } from '../../utils'
 
 import React from 'react'
 import mapValue from 'map-value'
 import api from '../../api'
-import { cssLayout } from '../../css'
+import {cssLayout} from '../../css' // eslint-disable-line no-unused-vars
 
-import { Input } from 'antd'
-import { Menu, Icon } from 'antd'
-import { Card, Tag } from 'antd'
-import { Modal, Button } from 'antd'
 
 export default class Nav extends React.Component {
   state = { visible: false }
@@ -25,16 +22,16 @@ export default class Nav extends React.Component {
 
   handleOk = (e) => {
     console.log(this.state)
-    // this.setState({
-    //   confirmLoading: true,
-    // })
+    this.setState({
+      confirmLoading: true,
+    })
     api
       .post('/bookmark', mapValue(this.state, {
         visible: v => ({ kkk: 1234, }),
         tagInput: v => (v && { tags: v.split(/\s*,\s*/) })
       }))
       .then(() => this.setState({
-        confirmLoading: true,
+        visible: false,
       }))
       .catch(err => {
         console.log('error post', err)
@@ -46,6 +43,10 @@ export default class Nav extends React.Component {
     this.setState({
       visible: false,
     })
+  }
+
+  validModal = ()=>{
+    return !this.state.confirmLoading && this.state.visible
   }
 
   render() {
@@ -84,9 +85,9 @@ export default class Nav extends React.Component {
         visible={this.state.visible}
         onOk={this.handleOk}
         confirmLoading={this.state.confirmLoading}
-        onCancel={this.handleCancel}
-      >
+        onCancel={this.handleCancel}>
         <Input
+          ref={el => this.domUrl = el}
           placeholder="Enter URL here"
           prefix={
             <Icon type="link" style={{ color: 'gray' }} />
@@ -95,7 +96,8 @@ export default class Nav extends React.Component {
             this.state.url && <Icon type="close-circle" onClick={
               e => {
                 this.setState({ url: '' })
-                this.urlInput.focus()
+                console.log(this.domUrl)
+                this.domUrl.focus()
               }
             } />
           }
@@ -108,24 +110,28 @@ export default class Nav extends React.Component {
             fetchURLInfo(this.state.url)
               .then(json => {
                 console.log(json)
-                if (!json.error) {
+                if (!json.error && this.validModal()) {
                   const {
                     url,
                     title,
                     desc,
                     favicon
                   } = json
-                  this.setState({
+                  this.setState(mapValue({
                     url, title, desc, favicon
-                  })
+                  }, {
+                    url: v=>this.state.url ? {} : v,
+                    title: v=>this.state.title ? {} : v,
+                    desc: v=>this.state.desc ? {} : v,
+                  }))
                 }
               })
               .catch(err => console.log(err))
           }}
-          ref={el => this.urlInput = el}
         />
 
         <Input
+          ref={el => this.domTitle = el}
           style={{ marginTop: '.5rem' }}
           placeholder="Enter Title here"
           prefix={
@@ -135,16 +141,16 @@ export default class Nav extends React.Component {
             this.state.title && <Icon type="close-circle" onClick={
               e => {
                 this.setState({ title: '' })
-                this.titleInput.focus()
+                this.domTitle.focus()
               }
             } />
           }
           value={this.state.title}
           onChange={e => this.setState({ title: e.target.value })}
-          ref={el => this.titleInput = el}
         />
 
         <Input.TextArea
+          ref={el => this.domDesc = el}
           style={{ marginTop: '.5rem' }}
           value={this.state.desc}
           onChange={e => this.setState({ desc: e.target.value })}
@@ -152,6 +158,7 @@ export default class Nav extends React.Component {
             minRows: 2, maxRows: 6
           }} />
         <Input
+          ref={el => this.domTagInput = el}
           style={{ marginTop: '.5rem' }}
           placeholder="Enter Tags ( ',' separated )"
           prefix={
@@ -172,6 +179,7 @@ export default class Nav extends React.Component {
             )
         }</div>
       </Modal>
+
     </nav>
   }
 }
