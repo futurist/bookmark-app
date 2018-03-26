@@ -16,6 +16,8 @@ class Main extends React.Component {
     showLoadingMore: true,
   }
 
+  WrapModal = wrapModal()
+
   deleteItem = (id)=>{
     api.delete('/bookmark/'+id).then(this.getList)
   }
@@ -55,7 +57,7 @@ class Main extends React.Component {
     const {list} = props
     const {data} = list||{}
     console.log('list', list)
-
+    const {WrapModal} = this
     const { loading, loadingMore, showLoadingMore } = this.state
     const loadMore = showLoadingMore ? (
       <div style={{ textAlign: 'center', marginTop: 12, height: 32, lineHeight: '32px' }}>
@@ -63,10 +65,6 @@ class Main extends React.Component {
         {!loadingMore && <Button onClick={this.onLoadMore}>加载更多</Button>}
       </div>
     ) : null
-
-    const WrapModal = wrapModal({
-      editID: this.state.editID
-    })
 
     return <main>{
       isEmpty(data)

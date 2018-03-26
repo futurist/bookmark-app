@@ -6,26 +6,27 @@ import React from 'react'
 
 export default function wrapModal () {
   return class ModalWrap extends React.Component {
-  
-    constructor(props){
-      super(...arguments)
-      const {editID, list} = this.props
+    state = {}
+
+    componentWillReceiveProps (props){
+      const {editID, list} = props
       const row = list && list.data[editID]
-      this.state=mapValue(
-        { visible: editID!=null },
+      this.setState(mapValue(
+        {
+          id: '',
+          title:'',
+          url:'',
+          desc:'',
+          tagInput: '',
+          isLike: false
+        },
         row && {
           id: v=> row,
           tags: v=>({tagInput: row.tags.join(',')})
         }
-      )
+      ))
       // console.log(this.state)
     }
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    })
-  }
 
   handleOk = (e) => {
     console.log(this.state)
@@ -38,7 +39,6 @@ export default function wrapModal () {
     api[method](
       url,
       mapValue(this.state, {
-        visible: null,
         tagInput: v => (v && { tags: v.split(/\s*,\s*/) })
       }))
       .then(() => {
@@ -55,14 +55,16 @@ export default function wrapModal () {
   }
 
   validModal = ()=>{
-    return !this.state.confirmLoading && this.state.visible
+    return !this.state.confirmLoading && this.visible
   }
 
   render() {
+    this.visible = this.props.editID!=null
+
     return <Modal
       style={{zIndex: 9e9}}
       title="Add new bookmark"
-      visible={this.state.visible}
+      visible={this.visible}
       onOk={this.handleOk}
       confirmLoading={this.state.confirmLoading}
       onCancel={this.handleCancel}>
