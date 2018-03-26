@@ -1,22 +1,29 @@
 import {connect} from 'react-redux'
 import {addFilter} from './filter.action'
-import { Menu, Icon, Card, } from 'antd'
+import {uiState} from './ui.action'
+import { Menu, Icon, Card } from 'antd'
 import React from 'react'
 import {cssLayout} from '../../css' // eslint-disable-line no-unused-vars
 
 class Nav extends React.Component {
 
   handleClick = e => {
-    console.log(e)
-    this.props.addFilter({like: e.key==2})
+    this.props.addFilter({like: e.key==="2"})
   }
 
   render() {
-    const {list={}, filter, fontMin=14, fontMax=50} = this.props
+    const {list={}, filter, ui, uiState, fontMin=14, fontMax=50} = this.props
     let {tagsMin, tagsMax} = list
     tagsMax = Math.max(tagsMax, 10)
-    return <nav>
+    return cssLayout.mapClass(<nav>
 
+      <Icon type={ui.unfold ? 'menu-fold' : 'menu-unfold'}
+        onClick={e=>{
+          uiState({
+            unfold: !ui.unfold
+          })
+        }}
+        className="menuHandler" />
       <Menu
         defaultSelectedKeys={['1']}
         mode="vertical"
@@ -44,7 +51,7 @@ class Nav extends React.Component {
             return <a
               key={tag}
               style={{
-                color: filter.tag==tag ? 'red' : '',
+                color: filter.tag===tag ? 'red' : '',
                 marginRight: 10,
                 fontSize: val <= tagsMin
                   ? fontMin
@@ -58,7 +65,7 @@ class Nav extends React.Component {
         }</div>
       </Card>
 
-    </nav>
+    </nav>)
   }
 }
 
@@ -66,5 +73,6 @@ export default connect(
   state=>state,
   {
     addFilter: addFilter(),
+    uiState: uiState()
   }
 )(Nav)

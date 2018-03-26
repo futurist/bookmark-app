@@ -21,8 +21,13 @@ class App extends React.Component {
     //   <div className="a"><p className="b"><span>text</span></p></div>,
     //   el => el.type=='span' ? {children:<h1/>} : replacer(el.props.className)
     // ); return d;
+    const {ui} = this.props
+    console.log(ui)
     return mapClass(
-      <div className='container'>
+      <div className={{
+        container: true,
+        unfold: ui.unfold,
+      }}>
         <Header />
         <Nav />
         <Main />
@@ -31,4 +36,6 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default connect(
+  state=>state,
+)(App)

@@ -10,7 +10,7 @@ const reducer = (state = initState , action = {type: ''}) => {
   var filterEmpty = v=>v==null ? {} : v
   switch (action.type) {
     case FILTER_ACTION: {
-      return Object.assign(state, mapValue(
+      return Object.assign({}, state, mapValue(
         action.payload,
         {
           keyword: filterEmpty,

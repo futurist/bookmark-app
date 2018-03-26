@@ -37,9 +37,11 @@ exports.default = Object.assign({
     flexDirection: 'column',
     minHeight: '100vh',
     header: {
+      marginLeft: 0,
       display: 'flex',
       gridColumn: '2 / -1',
       padding: '0.5rem',
+      paddingLeft: '1rem',
       textAlign: 'center',
       fontSize: '1.2rem',
       backgroundColor: '#212121',
@@ -53,10 +55,17 @@ exports.default = Object.assign({
       },
     },
     main: {
+      marginLeft: 0,
       flex: 1,
       padding: '20px'
     },
     nav: {
+      position: 'fixed',
+      background: 'white',
+      zIndex: 999,
+      width: '180px',
+      top: 0,
+      left: -180,
       gridRow: '1 / -1',
       backgroundColor: 'rgba(238, 238, 238, 0.23)',
       padding: '0px',
@@ -75,6 +84,27 @@ exports.default = Object.assign({
           color: 'rgba(0,0,0,.87)'
         }
       },
+      '.menuHandler':{
+        position: 'fixed',
+        zIndex: 9e9,
+        left: 0,
+        top: 0,
+        fontSize: '2rem',
+        color: 'white',
+        background: 'rgba(0,0,0,0.3)',
+        padding: '0.5rem',
+        transition: 'left 0.25s ease-out',
+      },
+      '.drawerBg':{
+        position: 'fixed',
+        zIndex: 99999,
+        left: 0,
+        top: 0,
+        bottom:0,
+        right:0,
+        background: 'rgba(0,0,0,0.3)',
+        display: 'none'
+      }
     },
     aside: {
       padding: '20px',
@@ -88,13 +118,43 @@ exports.default = Object.assign({
       backgroundColor: '#690',
       color: 'white'
     },
+
+    '&>*':{
+      transition: 'left 0.25s ease-out, margin-left 0.25s ease-out',
+    },
+    '&.unfold':{
+      nav:{
+        left: 0,
+      },
+      'header':{
+        marginLeft: 180
+      },
+      '.menuHandler':{
+        left: 180
+      },
+      '.drawerBg':{
+        display: 'block'
+      }
+    },
   },
   '@media (min-width: 768px)': {
     '.container': {
-      display: 'grid',
+      // display: 'grid',
       gridTemplateColumns: '180px 1fr',
-      gridTemplateRows: 'auto 1fr auto'
-    }
+      gridTemplateRows: 'auto 1fr auto',
+      'header,main':{
+        marginLeft: 180
+      },
+      header:{
+        paddingLeft: 0,
+      },
+      nav:{
+        left: 0,
+      },
+      '.menuHandler':{
+        display: 'none'
+      }
+    },
   },
 }, antDesign)
 
