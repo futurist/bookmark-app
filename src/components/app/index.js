@@ -1,26 +1,14 @@
 // public modules
 import React from 'react'
 import Loadable from 'react-loadable'
-
-
 // local modules
 import loading from '../loading'
 import {cssLayout} from '../../css'
 import Header from './header'
 import Nav from './nav'
-
+import Main from './main'
 
 const {mapClass} = cssLayout
-const LoadableComponent = Loadable({
-  loader: () => import('../user'),
-  loading,
-  delay: 1000,
-  timeout: 15e3,
-  render (el, props){
-    const Component = el.default
-    return <main><Component/></main>
-  }
-})
 
 class App extends React.Component {
   componentWillReceiveProps(a,b,c){
@@ -34,10 +22,9 @@ class App extends React.Component {
     // ); return d;
     return mapClass(
       <div className='container'>
-        <Header/>
-        <Nav/>
-        <LoadableComponent />
-        
+        <Header />
+        <Nav />
+        <Main />
       </div>
     )
   }

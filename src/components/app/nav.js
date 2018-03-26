@@ -6,7 +6,6 @@ import mapValue from 'map-value'
 import api from '../../api'
 import {cssLayout} from '../../css' // eslint-disable-line no-unused-vars
 
-
 export default class Nav extends React.Component {
   state = { visible: false }
 
@@ -75,12 +74,14 @@ export default class Nav extends React.Component {
 
       <Button style={{
         position: 'fixed', bottom: '20px', right: '15px', display: 'flex',
-        padding: 0, border: 0, fontSize: '3rem', height: '3rem'
+        padding: 0, border: 0, fontSize: '3rem', height: '3rem',
+        zIndex: 999
       }} onClick={this.showAdd}>
         <Icon type="plus-circle" />
       </Button>
 
       <Modal
+        style={{zIndex: 9e9}}
         title="Add new bookmark"
         visible={this.state.visible}
         onOk={this.handleOk}

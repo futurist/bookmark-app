@@ -1,4 +1,4 @@
-import {USER_ACTION} from '../components/user/actions'
+import {MAIN_ACTION} from '../components/app/main.actions'
 
 export const initState = {
   data: []
@@ -6,8 +6,8 @@ export const initState = {
 
 const reducer = (state = initState , action = {type: ''}) => {
   switch (action.type) {
-    case USER_ACTION.GET_LIST: {
-      return action.data
+    case MAIN_ACTION.GET_LIST: {
+      return action.payload
     }
     default:
       return state
