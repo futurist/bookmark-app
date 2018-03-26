@@ -1,22 +1,44 @@
 import {connect} from 'react-redux'
 import {addFilter} from './filter.action'
 import React from 'react'
-import { Input } from 'antd'
+import { Input, Icon } from 'antd'
 import {cssLayout} from '../../css' // eslint-disable-line no-unused-vars
 
 
 class Header extends React.Component{
+  state={}
   render(){
     const {filter={}} = this.props
-    return <header>
+    return cssLayout.mapClass(<header>
       <h3>{filter.like ? '收藏' : '全部'}</h3>
-      <Input.Search placeholder="Enter keyword" enterButton onSearch={
-        val=>{
-          this.props.addFilter({keyword: val})
+      <Input
+        ref={el=>this.domKeyword=el}
+        className="searchInput"
+        placeholder="Enter keyword"
+        prefix={<Icon type="search"
+          style={{color: 'rgba(255,255,255,.6)'}}
+          onClick={
+            e=>this.props.addFilter({keyword: this.state.keyword})
+          }
+        />}
+        suffix={
+          this.state.keyword && <Icon type="close-circle" style={{color:'white'}} onClick={
+            e => {
+              this.setState({ keyword: '' })
+              this.domKeyword.focus()
+              this.props.addFilter({keyword: ''})
+            }
+          } />
+        }
+        value={this.state.keyword||''}
+        onChange={e=>this.setState({keyword: e.target.value})}
+        onPressEnter={
+        e=>{
+          this.props.addFilter({keyword: this.state.keyword})
         }
       } style={{maxWidth:'15rem'}} />
     </header>
-  }
+  )}
 }
 
 export default connect(

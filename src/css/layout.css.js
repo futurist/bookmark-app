@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 
 const antDesign = {
-  '.!ant-input-search':{
+  '.searchInput':{
     'button,input':{
       borderRadius: 0,
       border:'none',
@@ -50,7 +50,7 @@ exports.default = Object.assign({
       '>*':{
         whiteSpace: 'nowrap',
         margin: '0 2rem'
-      }
+      },
     },
     main: {
       flex: 1,
