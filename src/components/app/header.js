@@ -7,8 +7,10 @@ import {cssLayout} from '../../css' // eslint-disable-line no-unused-vars
 
 class Header extends React.Component{
   render(){
+    const {like} = this.props
+    console.log(12341234,this.props)
     return <header>
-      <h3>All Bookmarks</h3>
+      <h3>{like ? '收藏' : '全部'}</h3>
       <Input.Search placeholder="Enter keyword" enterButton onSearch={
         val=>{
           this.props.addFilter({keyword: val})
@@ -19,7 +21,10 @@ class Header extends React.Component{
 }
 
 export default connect(
-  ({filter}) => ({filter}),
+  (state) => {
+    console.log(state.filter, 34234)
+    return (state.filter)
+  },
   {
     addFilter: addFilter()
   }

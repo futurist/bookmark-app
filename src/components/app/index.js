@@ -1,4 +1,5 @@
 // public modules
+import {connect} from 'react-redux'
 import React from 'react'
 import Loadable from 'react-loadable'
 // local modules
