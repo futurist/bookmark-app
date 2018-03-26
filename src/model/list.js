@@ -1,4 +1,4 @@
-import {MAIN_ACTION} from '../components/app/main.actions'
+import {MAIN_ACTION} from '../components/app/main.action'
 
 export const initState = {
   data: []

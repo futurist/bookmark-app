@@ -1,12 +1,14 @@
+import {connect} from 'react-redux'
+import {addFilter} from './filter.action'
 import { Menu, Icon, Card, } from 'antd'
-
 import React from 'react'
 import {cssLayout} from '../../css' // eslint-disable-line no-unused-vars
 
-export default class Nav extends React.Component {
+class Nav extends React.Component {
 
   handleClick = e => {
     console.log(e)
+    this.props.addFilter({like: e.key==2})
   }
 
   render() {
@@ -37,3 +39,9 @@ export default class Nav extends React.Component {
   }
 }
 
+export default connect(
+  state=>state,
+  {
+    addFilter: addFilter(),
+  }
+)(Nav)

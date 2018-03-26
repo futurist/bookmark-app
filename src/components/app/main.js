@@ -5,7 +5,7 @@ import api from '../../api'
 import React from 'react'
 import {isEmpty} from 'cssobj-helper'
 import { connect } from 'react-redux'
-import {getList} from './main.actions'
+import {getList} from './main.action'
 import {textOverflow} from '../../utils'
 import wrapModal from './form'
 
