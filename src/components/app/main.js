@@ -19,6 +19,7 @@ class Main extends React.Component {
   WrapModal = wrapModal()
 
   deleteItem = (id)=>{
+    if(!window.confirm('确定删除?')) return
     api.delete('/bookmark/'+id).then(this.getList)
   }
 
@@ -75,10 +76,15 @@ class Main extends React.Component {
           grid={{ gutter: 0, column: 1 }}
           dataSource={data}
           renderItem={(item,i) => (
-            <List.Item actions={[<a onClick={e=>this.setState({editID: i})}>编辑</a>, <a onClick={e=>this.deleteItem(item.id)}>删除</a>]}>
+            <List.Item>
               <Card title={item.title}>
+                <div><a onClick={e=>this.setState({editID: i})}>编辑</a>, <a onClick={e=>this.deleteItem(item.id)}>删除</a></div>
                 <b>{item.url}</b>
                 <div>{item.desc}</div>
+                <div>
+                  <Icon type={item.isLike ? 'star' : 'star-o'} style={{marginRight: '1rem'}} onClick={e=>this.toggleLike(i)} />
+                  {item.tags && item.tags.map(v=><a key={v}>{v} </a>)}
+                </div>
               </Card>
             </List.Item>
           )}
