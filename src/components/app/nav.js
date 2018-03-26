@@ -12,7 +12,7 @@ class Nav extends React.Component {
   }
 
   render() {
-    const {list={}, fontMin=14, fontMax=50} = this.props
+    const {list={}, filter, fontMin=14, fontMax=50} = this.props
     let {tagsMin, tagsMax} = list
     tagsMax = Math.max(tagsMax, 10)
     return <nav>
@@ -32,13 +32,19 @@ class Nav extends React.Component {
       </Menu>
 
 
-      <Card title="标签" bordered={false} extra={null}>
+      <Card title="标签" bordered={false} extra={filter.tag
+          ? <a onClick={e=>{
+            this.props.addFilter({tag: ''})
+          }}>清除</a>
+          : null
+        }>
         <div style={{display: 'flex', flexWrap: 'wrap'}}>{
           Object.keys(list.tags||{}).map(tag=>{
             const val = list.tags[tag]
             return <a
               key={tag}
               style={{
+                color: filter.tag==tag ? 'red' : '',
                 marginRight: 10,
                 fontSize: val <= tagsMin
                   ? fontMin

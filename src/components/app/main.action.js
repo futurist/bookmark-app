@@ -23,15 +23,13 @@ export function getList(options={}){
 
 function applyFilter(payload, filter={}){
   const {keyword, like, tag} = filter
-  payload.data = payload.data.filter(v=>
-    like
-    ? v.isLike
-    : tag
-    ? !isEmpty(v.tags) && v.tags.indexOf(tag)>-1
-    : keyword
-    ? [v.url||'', v.desc||'', v.title||''].join('').indexOf(keyword)>-1
-    : true
-  )
+  payload.data = payload.data.filter(v=>{
+    let ok = true
+    if(like) ok = ok && v.isLike
+    if(tag) ok = ok && !isEmpty(v.tags) && v.tags.indexOf(tag)>-1
+    if(keyword) ok = ok && [v.url||'', v.desc||'', v.title||''].join('').indexOf(keyword)>-1
+    return ok
+  })
   // temp pull out tags, should impement on server:
   const tags = payload.tags || {}
   let min = Infinity, max=0

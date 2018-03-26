@@ -68,7 +68,7 @@ class Main extends React.Component {
 
     return <main>{
       isEmpty(data)
-      ? 'loading...'
+      ? '暂无数据'
       : (
       <List
         loading={loading}
