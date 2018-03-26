@@ -1,5 +1,5 @@
 import { List, Avatar, Button, Spin } from 'antd'
-import { Icon } from 'antd'
+import { Icon, Card } from 'antd'
 import api from '../../api'
 
 import React from 'react'
@@ -54,7 +54,7 @@ class Main extends React.Component {
 
   render(){
     const {props} = this
-    const {list} = props
+    const {list,ui} = props
     const {data} = list||{}
     console.log('list', list)
     const {WrapModal} = this
@@ -70,7 +70,20 @@ class Main extends React.Component {
       isEmpty(data)
       ? '暂无数据'
       : (
-      <List
+      ui.phone
+      ? <List
+          grid={{ gutter: 0, column: 1 }}
+          dataSource={data}
+          renderItem={(item,i) => (
+            <List.Item actions={[<a onClick={e=>this.setState({editID: i})}>编辑</a>, <a onClick={e=>this.deleteItem(item.id)}>删除</a>]}>
+              <Card title={item.title}>
+                <b>{item.url}</b>
+                <div>{item.desc}</div>
+              </Card>
+            </List.Item>
+          )}
+        />
+      : <List
         loading={loading}
         itemLayout="horizontal"
         loadMore={loadMore}
@@ -116,7 +129,7 @@ class Main extends React.Component {
 }
 
 export default connect(
-  ({list}) => ({list}),
+  ({list,ui}) => ({list,ui}),
   {
     getList: getList()
   }
