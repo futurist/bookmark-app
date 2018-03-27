@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {addFilter} from './filter.action'
-import {uiState} from './ui.action'
+import {uiState, hideBG} from './ui.action'
 import { Menu, Icon, Card } from 'antd'
 import React from 'react'
 import {cssLayout} from '../../css' // eslint-disable-line no-unused-vars
@@ -9,10 +9,11 @@ class Nav extends React.Component {
 
   handleClick = e => {
     this.props.addFilter({like: e.key==="2"})
+    this.props.hideBG()
   }
 
   render() {
-    const {list={}, filter, ui, uiState, fontMin=14, fontMax=50} = this.props
+    const {list={}, filter, ui, uiState, hideBG, fontMin=14, fontMax=50} = this.props
     let {tagsMin, tagsMax} = list
     tagsMax = Math.max(tagsMax, 10)
     return cssLayout.mapClass(<nav>
@@ -57,7 +58,7 @@ class Nav extends React.Component {
                   ? fontMin
                   : (val / tagsMax) * (fontMax - fontMin) + fontMin
               }}
-              onClick={e=>{this.props.addFilter({tag})}}
+              onClick={e=>{this.props.addFilter({tag}); hideBG()}}
             >
               {tag}
             </a>
@@ -73,6 +74,7 @@ export default connect(
   state=>state,
   {
     addFilter: addFilter(),
-    uiState: uiState()
+    uiState: uiState(),
+    hideBG: hideBG(),
   }
 )(Nav)

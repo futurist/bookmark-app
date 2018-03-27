@@ -9,3 +9,10 @@ export function uiState (options={}){
     }
   )
 }
+
+export function hideBG (){
+  return ()=>dispatch=>dispatch({
+    type: UI_ACTION,
+    payload: {unfold: false}
+  })
+}

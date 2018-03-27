@@ -22,7 +22,7 @@ export function arrayUnique(arr){return Array.from(new Set(arr))}
 
 export function ensureHTTP(url){
   url = String(url).trim()
-  return /^https?:\/\//i.test(url)
+  return /^\s*https?:\/\//i.test(url)
   ? url
   : 'http://'+url
 }
@@ -37,4 +37,11 @@ export function textOverflow(str, len=10, remain='...'){
   return s.length <= len ? s : s.slice(0,len)+ remain
 }
 
-
+//https://coderwall.com/p/0iz_zq/how-to-put-focus-at-the-end-of-an-input-with-react-js
+export function moveCaretAtEnd(e) {
+  const {target} = e||{}
+  if(!target) return
+  var temp_value = target.value
+  target.value = ''
+  target.value = temp_value
+}

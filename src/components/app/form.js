@@ -1,5 +1,5 @@
 import { Input, Icon, Tag, Modal } from 'antd'
-import { arrayUnique, ensureHTTP, fetchURLInfo } from '../../utils'
+import { arrayUnique, ensureHTTP, moveCaretAtEnd, fetchURLInfo } from '../../utils'
 import mapValue from 'map-value'
 import api from '../../api'
 import React from 'react'
@@ -85,8 +85,18 @@ export default function wrapModal () {
         }
         value={this.state.url}
         onChange={e => {
-          const { value } = e.target
-          this.setState({ url: ensureHTTP(value) })
+          let {target} = e
+          let { value } = target
+          let url = ensureHTTP(value)
+          this.setState({ url })
+          target.value = url
+          if(url!=value){
+            target.blur()
+            moveCaretAtEnd(e)
+            setTimeout(()=>{
+              this.domUrl.focus()
+            })
+          }
         }}
         onBlur={e => {
           fetchURLInfo(this.state.url)

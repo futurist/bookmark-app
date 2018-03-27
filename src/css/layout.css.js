@@ -62,12 +62,13 @@ exports.default = Object.assign({
     nav: {
       position: 'fixed',
       background: 'white',
-      zIndex: 999,
+      zIndex: 99999,
       width: '180px',
       top: 0,
+      bottom: 0,
       left: -180,
       gridRow: '1 / -1',
-      backgroundColor: 'rgba(238, 238, 238, 0.23)',
+      backgroundColor: 'white',
       padding: '0px',
       borderRight: '1px solid #e8e8e8',
       '.!ant-menu-inline, .!ant-menu-vertical, .!ant-menu-vertical-left':{
@@ -95,16 +96,16 @@ exports.default = Object.assign({
         padding: '0.5rem',
         transition: 'left 0.25s ease-out',
       },
-      '.drawerBg':{
-        position: 'fixed',
-        zIndex: 99999,
-        left: 0,
-        top: 0,
-        bottom:0,
-        right:0,
-        background: 'rgba(0,0,0,0.3)',
-        display: 'none'
-      }
+    },
+    '.drawerBg':{
+      position: 'fixed',
+      zIndex: 9999,
+      left: 0,
+      top: 0,
+      bottom:0,
+      right:0,
+      background: 'rgba(0,0,0,0.3)',
+      display: 'none'
     },
     aside: {
       padding: '20px',
