@@ -18,7 +18,10 @@ class Header extends React.Component{
         prefix={<Icon type="search"
           style={{color: 'rgba(255,255,255,.6)'}}
           onClick={
-            e=>this.props.addFilter({keyword: this.state.keyword})
+            e=>{
+              this.props.addFilter({keyword: this.state.keyword})
+              e.target.blur()
+            }
           }
         />}
         suffix={
@@ -35,6 +38,7 @@ class Header extends React.Component{
         onPressEnter={
         e=>{
           this.props.addFilter({keyword: this.state.keyword})
+          e.target.blur()
         }
       } style={{maxWidth:'15rem'}} />
     </header>
