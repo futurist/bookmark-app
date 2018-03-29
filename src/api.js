@@ -1,4 +1,5 @@
 const DEFAULT_HOST = process.env.API_HOST
+  || 'https://rem-hqotdtkdbq.now.sh/api'
   || 'https://jamesjson.herokuapp.com/api'
 
 class API {

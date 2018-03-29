@@ -22,7 +22,7 @@ export default function wrapModal () {
         },
         row && {
           id: v=> row,
-          tags: v=>({tagInput: row.tags.join(',')})
+          tags: v=>(row.tags && {tagInput: row.tags.join(',')})
         }
       ))
       // console.log(this.state)
@@ -42,7 +42,7 @@ export default function wrapModal () {
         tagInput: v => (v && { tags: v.split(/\s*,\s*/) })
       }))
       .then(() => {
-        this.props.close(true)
+        this.closeModal(true)
       })
       .catch(err => {
         console.log('error post', err)
@@ -51,7 +51,14 @@ export default function wrapModal () {
 
   handleCancel = (e) => {
     console.log(e)
-    this.props.close()
+    this.closeModal()
+  }
+
+  closeModal = (refresh)=>{
+    this.setState({
+      confirmLoading: false
+    })
+    this.props.close(refresh)
   }
 
   validModal = ()=>{

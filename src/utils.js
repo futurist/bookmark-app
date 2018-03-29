@@ -28,7 +28,7 @@ export function ensureHTTP(url){
 }
 
 export function fetchURLInfo(url){
-  return fetch(`https://jamesbookmark.herokuapp.com/lambda/info/run?url=${url}`)
+  return fetch(`/lambda/info/run?url=${url}`)
   .then(r=>r.json())
 }
 
