@@ -20,12 +20,18 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const clearConsole = require('react-dev-utils/clearConsole');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
+
+// don't let clearConsole run
+let oldIsTTY = process.stdout.isTTY
+process.stdout.isTTY = false
 const {
   choosePort,
   createCompiler,
   prepareProxy,
   prepareUrls,
-} = require('react-dev-utils/WebpackDevServerUtils');
+} = require('react-dev-utils/WebpackDevServerUtils')
+process.stdout.isTTY = oldIsTTY
+
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
 const config = require('../config/webpack.config.dev');
